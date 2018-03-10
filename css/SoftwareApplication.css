@@ -1,0 +1,78 @@
+._container{
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+             align-items: center;
+  -webkit-justify-content: center;
+            justify-content: center;
+  padding: 5px;
+  margin: 10px;
+}
+
+.segmented-control {
+  display: inline-flex;
+  margin-bottom: .75em;
+  padding:  .5em;
+  text-align: center;
+}
+
+.segmented-control > a {
+  min-width: 120px;
+  padding: .5em .75em;
+  line-height: 1em;
+  border: 1px solid #585858;
+  color: #585858;
+  opacity: .7;
+}
+
+.segmented-control > a.active,
+.segmented-control > a:hover {
+  color: #FFF;
+  border-color: #61a4ba;
+  opacity: 1;
+}
+
+.segmented-control > a:first-child {
+  padding: .5em .75em;
+  border-top-left-radius: 7.5px;
+  border-bottom-left-radius: 7.5px;
+}
+
+.segmented-control > a:last-child {
+  padding: .5em .75em;
+  border-bottom-right-radius: 7.5px;
+  border-top-right-radius: 7.5px;
+}
+
+.margin-middle{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+h2{
+  font-size: 1.5em;
+}
+
+@media screen and (min-width: 481px){
+  .flexbox{
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+             align-items: center;
+  -webkit-justify-content: left;
+            justify-content: left;
+  flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .flexbox{
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+             align-items: center;
+  -webkit-justify-content: left;
+            justify-content: left;
+  flex-direction: column;
+  }
+}

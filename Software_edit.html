@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>軟體查詢 | V.Lab Staff</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="./css/software.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/main.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+					<script src="js/header.js"></script>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<script type="text/javascript" src="js/menuChangeable.js"></script>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>軟體查詢</h1>
+							<div id="editAndSave-div"></div><br>
+							<div id="softwareInfo-table">
+								<table>
+									<tbody>
+										<tr><td>軟體流水號</td><td id="soft_id"></td></tr>
+										<tr><td>軟體名稱</td><td id="soft_name"></td></tr>
+										<tr><td>公司</td><td id="soft_company"></td></tr>
+										<tr><td>申請使用到期時間</td><td id="soft_usageDue"></td></tr>
+										<tr><td>作業系統</td><td><ul id="soft_os"></td></tr>
+										<tr><td>iMac</td><!--軟體對應iMac位置-->
+											<td id="imacLayout">
+												<div><input id="editImac_button" type="button" onclick="editImac('0.0.1 V.Lab Manager')" value="修改iMac" class="small"></div><div id="REx" class="room">
+													<div class="layoutImac-class layoutImac_stat_0" id="layoutREx_0">
+														<div class="layoutId">0</div>
+														<i class="fa fa-desktop" aria-hidden="true"></i>
+													</div>
+													<div class="layoutImac-class layoutImac_stat_1" id="layoutREx_1">
+														<div class="layoutId">1</div>
+														<i class="fa fa-desktop" aria-hidden="true"></i>
+													</div>
+													<div class="layoutImac-class layoutImac_stat_2" id="layoutREx_2">
+														<div class="layoutId">2</div>
+														<i class="fa fa-desktop" aria-hidden="true"></i>
+													</div>
+													<div class="layoutImac-class layoutImac_stat_-1" id="layoutREx_-1">
+														<div class="layoutId">-1</div>
+														<i class="fa fa-desktop" aria-hidden="true"></i>
+													</div>
+												</div>
+												<div id="R604" class="room">
+													<h2>V.Lab（604室）</h2>
+													<div id="row1">
+														<div class="layoutImac-class" id="layoutR604_6">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class" id="layoutR604_7">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class" id="layoutR604_8">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class" id="layoutR604_9">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class" id="layoutR604_TV">
+															<div class="layoutId">0000</div><i class="fa fa-television" aria-hidden="true"></i>
+														</div>
+													</div>
+													<div id="row2">
+														<div class="layoutImac-class" id="layoutR604_5">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class" id="layoutR604_10">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+													</div>
+													<div id="row3">
+														<div class="layoutImac-class" id="layoutR604_4">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class" id="layoutR604_11">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+													</div>
+													<div id="row4">
+														<div class="layoutImac-class" id="layoutR604_3">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class" id="layoutR604_12">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+													</div>
+													<div id="row5">
+														<div class="layoutImac-class" id="layoutR604_2">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class" id="layoutR604_13">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+													</div>
+													<div id="row6">
+														<div class="layoutImac-class" id="layoutR604_1">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class" id="layoutR604_14">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+													</div>
+													<div id="row7">
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class" id="layoutR604_15">
+															<div class="layoutId">0000</div><i class="fa fa-desktop" aria-hidden="true"></i>
+														</div>
+													</div>
+													<div id="row8">
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class"></div>
+														<div class="layoutImac-class">
+															<div class="layoutId">door 門</div><i class="fa fa-exchange" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+												<div id="R613" class="room"></div>
+												<div id="RN" class="room"></div>
+												<div id="editAndSaveImac_div"></div>
+												<!--軟體對應iMac位置	結束-->
+											</td></tr>
+											<tr><td>授權到期時間</td><td id="soft_licenseDue"></td></tr>
+											<tr><td>申請人userid</td><td id="soft_userid"></td></tr>
+											<tr><td>申請人</td><td id="soft_user"></td></tr>
+										</tbody></table>
+								<h2>選擇下方軟體來查詢軟體資訊</h2>
+							</div>
+							<h2>軟體列表<h2>
+							<div id="searchSoft">
+								<i class="fa fa-search" aria-hidden="true"></i>
+								<input type="text" id="searchInput" onkeyup="filterByName()" placeholder="輸入想要查詢的軟體名稱">
+							</div>
+							<br><br>
+							<div>
+								<table id="software-table"><tbody></tbody></table>
+							</div>
+							<script type="text/javascript" src="js/software_edit.js" ></script>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
+			<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+			<script src="js/main.js"></script>
+
+	</body>
+</html>

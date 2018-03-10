@@ -1,0 +1,72 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+#picture{
+    background-image: url(http://i.imgur.com/FQAY9AZ.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+#operator{
+    display: -webkit-flex;
+    display:         flex;
+     -webkit-align-items: center;
+             align-items: center;
+    -webkit-justify-content: left;
+            justify-content: left;
+    margin-left: 40px;
+}
+.itemCenter{
+    display: -webkit-flex;
+    display:         flex;
+     -webkit-align-items: center;
+             align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+#punch_in{
+    font-size: 30px;
+}
+
+.item{
+    margin-left: 10px;
+}
+
+
+
+@media screen and (min-width: 640px) {
+  #mainbox {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+    .item{
+        margin-left: 0px;
+    }
+    .itemCenter{
+        display: -webkit-flex;
+        display:         flex;
+        -webkit-align-items: center;
+                align-items: center;
+        -webkit-justify-content: center;
+                justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    #schedulebox{
+        height: calc(100vw * 1);
+      }
+}
+@media screen and (min-width: 1024px){
+    #schedulebox{
+      height: 750px;
+    }
+}

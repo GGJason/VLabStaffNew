@@ -1,0 +1,471 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>人數統計工具 | V.Lab Staff</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+		<meta lang="zh-Hant">
+		<meta name="description" content="臺大土木系V.Lab工讀生的工作專區">
+		<!--jQurey-->
+		<script src="js/jquery.min.js"></script>
+		<style>
+			.action{
+				text-align:center;
+			}
+			.action div{
+				margin:0 auto;
+				width:33%;
+				padding: 50pt 0 50pt 0;
+				background: steelblue;
+				color:white;
+				font-size:24pt;
+				text-align:center;
+				display:inline-block;
+				border:none;
+			}
+			.action div:active{
+				background:blue;
+			}
+			.action div i{
+				margin: 40pt;
+			}
+			#date{
+				width:100%;
+				text-align:center;
+				font-size:28pt;
+				border:none;
+				padding: 10pt 0 10pt 50pt;
+			}
+			#count{
+				border: solid black;
+				width:100%;
+				margin-bottom:20pt;
+				text-align:center;
+				padding:30pt;
+				font-size:32pt;
+			}
+			.date{
+			}
+			
+svg {
+  font: 10px sans-serif;
+}
+
+.y.axis path {
+  display: none;
+}
+
+.y.axis line {
+  stroke: #fff;
+  stroke-opacity: .2;
+  shape-rendering: crispEdges;
+}
+
+.y.axis .zero line {
+  stroke: #000;
+  stroke-opacity: 1;
+}
+
+.birthyear,
+.age {
+  text-anchor: middle;
+}
+
+.birthyear {
+  fill: #fff;
+}
+
+rect {
+  fill-opacity: .6;
+  fill: #e377c2;
+}
+
+rect:first-child {
+  fill: #1f77b4;
+}
+
+		.bar2017{
+		 	fill:#B2FFC3
+		}
+		.bar2016{
+		 	fill:#00FF3A
+		}
+		.bar2015{
+		 	fill:#00CA2E
+		}
+		.bar2014{
+		 	fill:#1A8933
+		}
+		.bar2013{
+		 	fill:#004C11
+		}
+		</style>
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/d3.min.js"></script>
+		<script src="./js/main.js"></script>
+		
+
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header">
+					<script src="js/header.js"></script>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+					<script type="text/javascript" src="js/menuChangeable.js"></script>
+					</nav>
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>人數統計</h1>
+								<script>$.get("./auth.php?check").done(function(){$("h1:last-of-type").append("<h4><a href='http://10.12.4.195:7001/'>你找不到的監視器網址</a></h4>");})</script>
+							</header>
+							<section>
+							<div id="counter">
+			<input type="Date" id="date" class="today" onchange="dateChangeListener()"></input>
+		
+			<div class="date action"><div onclick="dateChange(-1)"><<</div><div onclick="dateChange(1)">>></div></div>
+			<input id="count"></input>
+			<div class = "action">
+			<div onclick="countChangeListenter(-1)">-</div><div onclick="countChangeListenter(1)">+</div><div onclick="countChangeListenter(2)">++</div>
+			<div onclick="reset()"> Reset </div>
+			</div>
+		</div>
+		<div id="show">
+			<div id="showOption"></div>
+			<div id="showContent"><svg width="960" height="500"></svg></div>
+		</div>
+		<div id="table" class="count">
+		</div>
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="field half first">
+										<input type="text" name="name" id="name" placeholder="Name" />
+									</div>
+									<div class="field half">
+										<input type="email" name="email" id="email" placeholder="Email" />
+									</div>
+									<div class="field">
+										<textarea name="message" id="message" placeholder="Message"></textarea>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="special" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
+			<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/md5.js"></script>
+			<script src="js/main.js"></script>
+<script>
+			var dataSave = {};
+			$("html").ready(function(){
+				var today = new Date();
+				$.ajax({
+					url: "./count.php?check",
+					type:"GET",
+					success:function(response){
+						var data = $.parseJSON(response);
+						$(".today").val(data["date"]);
+					},
+					error:function(xhr){
+						alert("Ajax 錯誤");
+					},
+				});
+				dateChangeListener();
+			});
+			function dateChangeListener(){
+				$.ajax({
+					url: "./count.php",
+					type:"GET",
+					data:{
+						date:$("#date").val(),
+					},
+					success:function(response){
+						$("#count").val(response);
+					},
+					error:function(xhr){
+						alert("Ajax 錯誤");
+					},
+				});
+			}
+			function countChangeListenter (num){
+				var newCount;
+				if($("#count").val() == "No Record")
+					newCount = 0;
+				else
+					var newCount = parseInt($("#count").val());
+				if(num>=0){
+					newCount += num;
+				}
+				else{
+					newCount -= 1;
+					if(newCount < 0){
+						alert("太少人啦");
+						newCount = 0;
+					}
+				}
+				if($("#count").val() != "No Record" || newCount > 0){
+					$("#count").val(newCount);
+					$.ajax({
+						url: "./count.php",
+						type:"POST",
+						data:{
+							date:$("#date").val(),
+							count:newCount,
+						},
+						error:function(xhr){
+							alert("請登入");
+							window.location="auth.php";
+						},
+						success:function(response){
+							if(response=="403")window.location="auth.php";
+						},
+						statusCode:{
+							403:function(){alert("請登入");},
+						},
+					});
+				}
+			};
+			function dateChange (num){								
+				countChangeListenter(0);
+				var arr = $("#date").val().split("-");
+				var newDate = new Date(arr[0],arr[1]-1,arr[2]);
+				if(num>0){
+					newDate.setDate(newDate.getDate()+2);
+				}
+				else{
+					newDate.setDate(newDate.getDate()-0.5);
+				}
+				$("#date").val(newDate.toJSON().substring(0,10));
+				dateChangeListener();
+			};
+			
+				var svg = d3.select("svg"),
+					margin = {top: 20, right: 20, bottom: 30, left: 50},
+					width = +svg.attr("width") - margin.left - margin.right,
+					height = +svg.attr("height") - margin.top - margin.bottom,
+					g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+					
+				var x = d3.scaleLinear()
+					.rangeRound([80, width-20],.1);
+				var y = d3.scaleLinear()
+				    .rangeRound([height, 0]);
+				var center;
+				d3.json("./count.php?show&month",function(error, data) {
+  					var dateFmt = d3.timeFormat('%Y-%m-%d');
+  					minDate = new Date();
+  					data.months = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+					data.forEach(function(d) {
+    					d.date = new Date(d.date);
+    					d.year = d.date.getFullYear();
+    					d.month = d.date.getMonth()+1;
+    					if(d.date<minDate)
+    						minDate = d.date;
+    					d.count = +d.count;
+    					d.bottom = data.months[d.month];
+    					data.months[d.month]+=d.count;
+    					d.top = data.months[d.month];
+					});
+					if (error) throw error;
+					barwidth = width / 15 / (Math.floor((new Date()-minDate )/365/24/60/60/1000)+1);
+					//console.log(barwidth);
+					center = Math.floor((new Date()-minDate )/365/24/60/60/1000/2+minDate.getFullYear()-1);
+					//x.domain([d3.min(data, function(d) { return d.date; }),d3.max(data, function(d) { return d.date; })]);
+					dataSave = data;
+					x.domain([1,12])
+					y.domain([0,d3.max(data, function(d) { return d.count; })]);
+
+					g.append("g")
+  						.attr("transform", "translate(0," + height + ")")
+  						.call(d3.axisBottom(x))
+						.select(".domain")
+  						.remove();
+
+					g.append("g")
+  						.call(d3.axisLeft(y))
+						.append("text")
+					  	.attr("fill", "#000")
+					  	.attr("transform", "rotate(-90)")
+					  	.attr("y", 6)
+					  	.attr("dy", "0.71em")
+					  	.attr("text-anchor", "end")
+					  	.text("People");
+
+				  	/*g.append("path")
+					  	.datum(data)
+					  	.attr("fill", "none")
+					  	.attr("stroke", "steelblue")
+					  	.attr("stroke-linejoin", "round")
+					  	.attr("stroke-linecap", "round")
+					  	.attr("stroke-width", 1.5)
+					  	.attr("d", line);*/
+					 g.selectAll("rect")
+					 	.data(data)
+					 	.enter()
+					 	.append("rect")
+					 	.attr("x",function(d){	 		
+					 		var years = Math.floor((d.date-new Date().setFullYear(center))/365/24/60/60/1000); 
+					 		return x(d.month)-barwidth/2+years*barwidth;})
+					 	.attr("width",barwidth)
+					 	.attr("y",function(d){return y(d["count"]);})
+					 	.attr("height",function(d){return height - y(d["count"]);})
+					 	.attr("class",function(d){return "bar"+d.year;});
+					 	
+					 g.selectAll("text")
+					 	.data(data)
+					 	.enter()
+					   .append("text")
+					 	.text(function(d){return d["count"];})
+					 	.attr("x",function(d){	 		
+					 		var years = Math.floor((d.date-new Date().setFullYear(center))/365/24/60/60/1000); 
+					 		return x(d.month)-barwidth/2+years*barwidth;})
+					 	.attr("y",function(d){return  y(d["count"])})
+					//console.log(data.months);
+				});
+			function mouseover(){
+				
+			}
+			function list(){
+				barwidth = width / 15 / (Math.floor((new Date()-minDate )/365/24/60/60/1000)+1);
+					//console.log(barwidth);
+					//x.domain([d3.min(data, function(d) { return d.date; }),d3.max(data, function(d) { return d.date; })]);
+					data = dataSave;
+					g.selectAll("g").remove();
+					g.selectAll("rect").remove();
+					x.domain([1,12])
+					y.domain([0,d3.max(data, function(d) { return d.count; })]);
+
+					g.append("g")
+  						.attr("transform", "translate(0," + height + ")")
+  						.call(d3.axisBottom(x))
+						.select(".domain")
+  						.remove();
+
+					g.append("g")
+  						.call(d3.axisLeft(y))
+						.append("text")
+					  	.attr("fill", "#000")
+					  	.attr("transform", "rotate(-90)")
+					  	.attr("y", 6)
+					  	.attr("dy", "0.71em")
+					  	.attr("text-anchor", "end")
+					  	.text("People");
+
+				  	/*g.append("path")
+					  	.datum(data)
+					  	.attr("fill", "none")
+					  	.attr("stroke", "steelblue")
+					  	.attr("stroke-linejoin", "round")
+					  	.attr("stroke-linecap", "round")
+					  	.attr("stroke-width", 1.5)
+					  	.attr("d", line);*/
+					 g.selectAll("rect")
+					 	.data(data)
+					 	.enter()
+					 	.append("rect")
+					 	.attr("x",function(d){
+					 		change = d.date; 
+					 		
+					 		var years = Math.floor((change-new Date().setFullYear(center))/365/24/60/60/1000); 
+					 		
+					 		//change.setFullYear(center);
+					 		console.log(years +" " +d.year+" "+center); 
+					 		
+					 		return x(d.month)-barwidth/2+years*barwidth;})
+					 	.attr("width",barwidth)
+					 	.attr("y",function(d){return y(d["count"]);})
+					 	.attr("height",function(d){return height - y(d["count"]);})
+					 	.attr("class",function(d){return "bar"+d.year;})
+					 	.append("text")
+					 	.text(function(d){return d["count"];});
+			}
+			function stacked (){
+				barwidth=width/14;
+				tempMonths = dataSave.months;
+				//console.log(dataSave);
+				y.domain([0,d3.max(dataSave.months,function(d){return d;})]);
+				g.selectAll("g").remove()
+				g.append("g")
+  						.call(d3.axisLeft(y))
+						.append("text")
+					  	.attr("fill", "#000")
+					  	.attr("transform", "rotate(-90)")
+					  	.attr("y", 6)
+					  	.attr("dy", "0.71em")
+					  	.attr("text-anchor", "end")
+					  	.text("People");
+					  	g.append("g")
+  						.attr("transform", "translate(0," + height + ")")
+  						.call(d3.axisBottom(x))
+						.select(".domain")
+  						.remove();
+				g.selectAll("rect")
+				.remove();
+				g.selectAll("rect")
+				  	.data(dataSave)
+				  	.enter()
+				  .append("rect")
+				  	.attr("x",function(d){
+				 		change = d.date; 
+				 		
+				 		var years = Math.floor((change-new Date().setFullYear(center))/365/24/60/60/1000); 
+				 		
+				 		return x(d.month)-barwidth/2;})
+				 	.attr("width",barwidth)
+				 	.attr("y",function(d){ return y(d.top);})
+				 	.attr("height",function(d){return y(d.bottom)-y(d.top);})
+				 	.attr("class",function(d){return "bar"+d.year;});
+				d3.selectAll('[class^="bar"]').on('mouseover', function( data, index, element ) {
+    d3.select( element ).attr('style', '');
+});
+			}
+		</script>
+
+	</body>
+</html>

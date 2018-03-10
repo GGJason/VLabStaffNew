@@ -1,0 +1,119 @@
+.room{
+	padding: 10px;
+	border-width: 10px !important;
+	border-color: red;
+	width:100%;
+	max-width: 800px;
+	margin: auto;
+	margin-bottom: 1%;
+}
+#R604{
+	max-height: 1120px;
+	background-color: lightgray;
+}
+#R613{
+	background-color: lightgray;
+}
+
+
+
+.layoutImac-class{
+	width: 19%;
+	display: inline-block;
+	padding: 1%;
+	border: 0.2em solid rgba(255,255,255,0);
+	border-radius: 15%; 
+
+}
+	.layoutImac-class > .fa{
+		font-size: 2.2em;
+		display: block;
+		text-align: center;
+	}
+	.layoutImac-class > .layoutId{
+		font-size: 1.5em;
+		text-align: center;
+	}
+.ava_-1{
+/*維修中*/
+	color: darkgray;
+}
+.ava_0{
+/*可使用*/
+	color: #585858;
+}
+.ava_1{
+/*已預約*/
+	color: #61a4ba;
+}
+.ava_2{
+/*借用中*/
+	color: #f9b9bc;
+}
+
+.layoutImacClickable{
+	cursor: pointer;
+}
+.layoutImacClickable:hover{
+    transition: 0.2s ease;
+    border: 0.2em dotted #ffee8f;
+
+}
+
+#imac{
+	width:100%;
+	height: 40vw;
+	background-color: aliceblue;
+}
+#left, #right{
+	cursor: pointer;
+	font-size: 300%;
+	position: relative;
+	top: -10vw;
+	margin: 4vw;
+	transition: 0.2s ease;
+}
+#left{
+	float: left;
+}
+#right{
+	float: right;
+}
+#left:hover, #right:hover{
+	color: #61a4ba;
+}
+#left:visited, #right:visited{
+	color: #61a4ba;
+}
+#imac > .fa-desktop{
+	display: block;
+	text-align: center;
+	position: relative;
+	font-size: 15vw;
+	top: 15vw;
+
+}
+#imacNo{
+	display: block;
+	text-align: center;
+	position: relative;
+	font-size: 
+	5vw;
+}
+
+#top{
+	display: none;
+	cursor: pointer;
+	font-size: 1.8em;
+	position: fixed;
+	line-height: 1;
+	background-color: rgba(255,255,255,0.5);
+	border: 0.1em solid rgba(255,255,255,0.5);
+	border-radius: 0.2em;
+	top: 90vh;
+	right: 10vw;
+	transition:0.2s ease;
+}
+#top:hover{
+	color: #61a4ba;
+}

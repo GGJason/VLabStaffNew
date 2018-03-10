@@ -1,0 +1,118 @@
+.softwareListTd{
+	cursor: pointer;
+}
+.softwareListTd:hover{
+	background-color: #d9f1fd;
+}
+.softwareListTd:active{
+	color: #41a6ba;
+}
+#os{
+	margin-bottom: 0 !important;
+}
+.show{
+	background-color: #ffffff;
+}
+.YMD{
+	display: inline-block;
+	margin-right: 20px;
+}
+input[type="text"]{
+	display: inline-block;
+	line-height: 1 !important;
+	height: 1em !important;
+}
+#searchInput{
+	width: calc(100% - 25px);
+}
+.softUser_name_ele_class{
+	display: inline-block;
+	margin: 5px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    background-color: white;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 6px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+//imacLayout
+.room{
+	padding: 10px !important;
+	width:100%;
+	max-width: 800px;
+	margin: auto;
+	margin-bottom: 1%;
+}
+#R604{
+	max-height: 1120px;
+	min-width: 230px !important;
+}
+#R613{
+}
+.layoutId{
+	padding-right: 0.2em;
+}
+
+
+
+.layoutImac-class{
+	width: 20%;
+	display: inline-block;
+	color: lightgray;
+	border: 0.1em rgba(255,255,255,0);
+	border-radius: 15%
+}
+	.layoutImac-class > .fa{
+		font-size: 1em;
+		display: inline-block;
+		text-align: center;
+	}
+	.layoutImac-class > .layoutId{
+		display: inline-block;
+		font-size: 1.2em;
+		text-align: center;
+		margin-right: 5px;
+	}
+
+.edit-label{
+	padding: 0 !important;
+	margin: 0.1em;
+	display: none;
+}
+.edit-label:before{
+	display: none !important;
+}
+.edit-label > div, .edit-label > i{
+	color: lightgray;
+}
+.layoutImac-class > input[type="checkbox"]:disabled+label{
+	cursor: default ;
+
+}
+.layoutImac-class > input[type="checkbox"]:enabled+label:hover{
+	transition: 0.1s ease;
+	border: 0.1em dotted #ffee8f;
+}
+.layoutImac-class > input[type="checkbox"]:checked+label > div, .layoutImac-class > input[type="checkbox"]:checked+label > i{
+	color: lightseagreen;
+}
+
+
+

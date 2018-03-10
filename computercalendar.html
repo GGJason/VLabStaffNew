@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>軟體查詢 | V.Lab Staff</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="css/main.css" />
+		<style type="text/css">
+			.softwareListTd{
+				cursor: pointer;
+			}
+			.softwareListTd:hover{
+				background-color: #d9f1fd;
+			}
+			.softwareListTd:active{
+				color: #41a6ba;
+			}
+			#os{
+				margin-bottom: 0 !important;
+			}
+			.show{
+				background-color: #ffffff;
+			}
+		</style>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+					<script src="js/header.js"></script>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<script type="text/javascript" src="js/menuChangeable.js"></script>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>電腦借用記錄</h1>
+							<p>如需借用請至「<a href="./Lentimac.html">iMac借用</a>」</p>
+							<div id="computercalendar">
+								<table id = "calendar">
+									<tr>
+										<th class="hide">編號</th>
+										<th class="hide">戳記</th>
+										<th>開始</th>
+										<th>結束</th>
+										<th class="hide">使用者</th>
+										<th>電腦</th>
+										<th class="hide">修改</th>
+									</tr>
+								</table>
+								<!--<table>
+									<tr class="month week">
+										<th>日</th>
+										<th>一</th>
+										<th>二</th>
+										<th>三</th>
+										<th>四</th>
+										<th>五</th>
+										<th>六</th>
+									</tr>
+									<tr class="day">
+										<th>時間</th>
+										<th id="schedule_date">2017/09/29</th>
+									</tr>
+								</table>-->
+							</div>
+							<script>
+								var id = location.hash.substr(1,10);
+								console.log(id);
+								if( id >= 0 ){
+									$.ajax({
+										url:"computer.php?calendar&id="+id,
+										type:"get",
+										dataType:"json",
+										success: function(data){
+											console.log(data.event)
+											$.each(data.event,
+											function(i,v){
+												v = v.replace(" ","T");
+												$("#"+i).val(v);
+											});
+										}
+									});
+								}
+								$.ajax({
+									url:"computer.php?calendar",
+									type:"get",
+									dataType:"json",
+									success: function(data){
+										$.each(data.events,function(i,v){
+											$("#calendar").append("<tr>");
+											$.each(v,function(key,value){
+												$("#calendar tr:last").append("<td>"+value+"</td>");
+											});	
+											if (Object.keys(data.events[0]).length == 3){
+												$(".hide").css("display","none");
+											}
+											else{
+											$("#calendar tr:last").append("<td><button onclick=\"location='./computercalendar.html#"+v.id+"';location.reload();\">修改</button></td>");
+											}
+											$("#calendar").append("</tr>");
+										});
+									}
+								});
+		
+								$("#newevent").submit(function(){
+									$.ajax({
+										url:"computer.php?calendar&update",
+										type:"post",
+										dataType:"json",
+										data:$("#newevent").serialize(),
+										success: function(data){
+											console.log(data)
+											if(data["status"]=="ok")
+												alert("已新增/更新成功");
+											else
+												alert(data["message"]);
+											console.log(data);
+										}
+									});
+									return false;
+								});
+								function schedule(){
+									var d = new Date().getFullYear()+"-"+new Date().getMonth();
+									var start = new Date(d);
+									console.log(start.getDay());
+								}
+								schedule();
+							</script>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="field half first">
+										<input type="text" name="name" id="name" placeholder="Name" />
+									</div>
+									<div class="field half">
+										<input type="email" name="email" id="email" placeholder="Email" />
+									</div>
+									<div class="field">
+										<textarea name="message" id="message" placeholder="Message"></textarea>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="special" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
+			<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+			<script src="js/main.js"></script>
+			<script src="js/main.js"></script>
+
+	</body>
+</html>

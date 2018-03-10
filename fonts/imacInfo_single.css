@@ -1,0 +1,47 @@
+#layout{
+	width:100%;
+	max-width: 800px;
+	background-color: whitesmoke;
+}
+
+#imac{
+	width:100%;
+	height: 300px;
+	background-color: aliceblue;
+}
+#left, #right{
+	cursor: pointer;
+	font-size: 2em;
+	position: relative;
+	top: -1.6em;
+	transition: 0.2s ease;
+}
+#left{
+	left: 1em;
+	float: left;
+}
+#right{
+	right: 1em;
+	float: right;
+}
+#left:hover, #right:hover{
+	color: #61a4ba;
+}
+#left:visited, #right:visited{
+	color: #61a4ba;
+}
+.fa-desktop{
+	display: block;
+	position: relative;
+	text-align: center;
+	top: 35%;
+	font-size: 8em;
+}
+#imacNo{
+	display: block;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	top: -0.3em;
+	font-size: 2em;
+}

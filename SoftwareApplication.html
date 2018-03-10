@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>軟體申請</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/SoftwareApplication.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.scrollex.min.js"></script>
+        <script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/util.js"></script>
+        <script src="js/SoftwareApplication.js"></script>
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">V.Lab Staff</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+					<script type="text/javascript" src="js/menuChangeable.js"></script>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+                                <nav>
+																	<div class="_container">
+																		<div class="segmented-control">
+																			<a href="./Lentimac.html">iMac借用</a>
+																			<a href="#">大電視主機借用</a>
+																			<a href="./SoftwareApplication.html">軟體申請</a>
+																		</div>
+																	</div>
+                                </nav>
+							</header>
+                            <section>
+                                <div class="row uniform">
+                                  <div class="12u$">
+                                      <h1>V.Lab 軟體申請表單</h1>
+                                  </div>
+                                  <div class="12u$" style="margin-top: 3em; ">
+                                    <h2>申請目的</h2>
+                                  </div>
+                                  <div class="8u 12u$(xsmall)">
+                                    <input type="text" id="purpose" placeholder="軟體用途(課程、研究">
+                                  </div>
+                                  <div class="4u 12u$(xsmall)">
+                                    <input type="text" id="teacher" placeholder="指導老師">
+                                  </div>
+                                  <div class="6u 12u$(xsmall)">
+                                    <label style="font-weight:normal;">開始日期：</label>
+                                    <input type="date" id="startDate">
+                                  </div>
+                                  <div class="6u 12u$(xsmall)">
+                                    <label style="font-weight:normal;">結束日期：</label>
+                                    <input type="date" id="endDate">
+                                  </div>
+                                  <div class="12u$" style="margin-top: 3em; ">
+                                    <h2>軟體資訊</h2>
+                                  </div>
+                                  <div class="12u$" id="softwareInput">
+                                    <form>
+                                      <div class="row uniform">
+                                        <div class="6u 12u$(xsmall)">
+                                          <input type="text" name="name" placeholder="軟體名稱">
+                                        </div>
+                                        <div class="6u 12u$(xsmall)">
+                                          <div class="row uniform">
+                                            <div class="label 3u 12u$(xsmall)" style="padding: 15px">作業系統：</div>
+                                            <div class = "4u 12u$(xsmall)" style="padding: 15px">
+                                              <input type="radio" name="os" id="software_1_osx" value="osx">
+                                              <label for="software_1_osx">osx (apple)</label>
+                                            </div>
+                                            <div class = "4u 12u$(xsmall)" style="padding: 15px">
+                                              <input type="radio" name="os" id="software_1_windows10" value="windows10">
+                                              <label for="software_1_windows10">windows 10</label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="12u$">
+                                          <input type="text" name="source" placeholder="軟體合法下載連結">
+                                        </div>
+                                        <div class="12u$">
+                                          <input type="text" name="notice" placeholder="備註">
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <div class="4u 12u$(xsmall)">
+                                    <div class="button" id="plus" onclick="expand(this)">增加欄位</div>
+                                  </div>
+                                  <div class="12u$" style="margin-top: 3em; ">
+                                    <h2>申請人資訊</h2>
+                                    <form id="applicant">
+                                      <div class="row uniform">
+                                        <div class="6u 12u$(xsmall)">
+                                          <input type="text" name="name" placeholder="申請人姓名">
+                                        </div>
+                                        <div class="6u 12u$(xsmall)">
+                                          <input type="tel" name="phone" placeholder="申請人電話">
+                                        </div>
+                                        <div class="12u$">
+                                          <input type="email" name="email" placeholder="申請人電子郵件信箱">
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <div class="12u$" style="margin-top: 3em;">
+                                    <h2>備註</h2>
+                                    <textarea id="memo" placeholder="有想跟我們說們麼嗎?"></textarea>
+                                  </div>
+                                  <div class="12u$"  style="margin-top: 3em;">
+                                    <div class="fit big special button" onclick="Submit()">確認送出</div>
+                                  </div>
+                                </div>
+                            </section>
+                        </div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li>
+                                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                                <li>icons made by <a href="https://www.flaticon.com/authors/kirill-kazachek" title="Kirill Kazachek">Kirill Kazachek</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+
+			<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+			<script src="js/main.js"></script>
+
+	</body>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+</html>

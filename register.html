@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./js/md5.js"></script>
+<script src="./js/main.js"></script>
+</head>
+<body>
+<h1>V.Lab 管理系統帳號申請</h1>
+<form method="POST" action="register.php" onsubmit="pwd_handler(this);">
+<div>使用者名稱：<input type="text" placeholder="vlab" name="username" required></input></div>
+<div>姓名：<input type="text" placeholder="管理員" name="name" required></input></div>
+<div>密碼：<input type="password" name="password" id="password" required></input></div>
+<div>電話：<input type="text" placeholder="0912345678" name="phone" required></input></div>
+<div>E-mail：<input type="email" placeholder="vlab@caece.net" name="email" required></input></div>
+<div><input type="submit"></input></div>
+</form>
+</body>
+</html>

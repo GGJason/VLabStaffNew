@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>登入</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href=".//ss/Login.css" />
+    <script src="./js/md5.js"></script>
+    <script src="./js/jquery.min.js"></script>
+
+	</head>
+	<body>
+		<script>
+			function Login(form){
+				var account = form.account.value;
+				var password = form.password.value;
+				//console.log({user: account, password: md5(password)});
+				$.post('./login.php?redirect=/',{user: account, password: md5(password)},function(msg){
+					console.log(msg);
+					if(msg.indexOf('Username or password is error!') !== -1){
+						form.password.value = '';
+						alert('Username or password is error!');
+					}
+					else{
+						document.location.href='https://vlabstaff.caece.net';
+					}
+				});
+				return false;
+			}
+		</script>
+    <div class="canvas">
+				<div class="title">登入</div>
+				<form onsubmit="return Login(this);">
+        	<div class="inputbox">
+          	<input type="text" name="account" id="account" placeholder="帳號">
+          	<input type="password" name="password" id="password" placeholder="密碼">
+					</div>
+					<div class="submit">
+		        <input type="submit" id="submit" value="送出">
+		      </div>
+				</form>
+    </div>
+
+	</body>
+</html>

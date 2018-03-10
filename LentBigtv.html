@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>大電視電腦借用</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/Lentimac.css" />
+        <script src="js/jquery.min.js"></script>
+				<script src="js/datalist-polyfill.min.js"></script>
+        <script src="js/jquery.scrollex.min.js"></script>
+        <script src="js/jquery.scrolly.min.js"></script>
+        <script src="js/skel.min.js"></script>
+		<script src="js/util.js"></script>
+        <script src="js/LentBigtv.js"></script>
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">V.Lab Staff</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+					<script type="text/javascript" src="js/menuChangeable.js"></script>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+                                <nav>
+                                    <div class="_container">
+                                      <div class="segmented-control">
+                                        <a href="./Lentimac.html">iMac借用</a>
+                                        <a href="./LentBigtv">大電視主機借用</a>
+                                        <a href="./SoftwareApplication.html">軟體申請</a>
+                                      </div>
+                                    </div>
+                                </nav>
+							</header>
+                            <section>
+															<h1>iMac借用表單</h1>
+															<div id="RULE">
+                                  <div class="row uniform">
+                                    <div class="12u$">
+                                      <h2>使用規範提醒</h2>
+                                      <p>歡迎借用vlab電腦，以下有幾點規則要請您遵守，如果沒問題請點選<span class="emphasize">我同意</span>。</p>
+                                    </div>
+                                    <div class="row uniform _icon" style="margin-top: 3em;">
+                                      <div class="4u 12u$(xsmall)">
+                                        <img src="images/forbidden.svg"/>
+                                        <h3>不可自行安裝軟體</h3>
+                                      </div>
+                                      <div class="4u 12u$(xsmall)">
+                                        <img src="images/usb.svg"/>
+                                        <h3>隨時備份個人檔案</h3>
+                                      </div>
+                                      <div class="4u 12u$(xsmall)">
+                                        <img src="images/power-button.svg"/>
+                                        <h3>使用完畢請關機</h3>
+                                      </div>
+                                    </div>
+                                    <div class="12u$" style="text-align: center">
+                                      <a class="button special ok"  style="margin-top: 4em;" onclick="agree()">我同意</a>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div id="TYPE">
+                                  <div class="row uniform" style="width:100%;">
+                                    <div class="12u$">
+                                      <h2>選擇用途</h2>
+                                    </div>
+                                    <div class="12u$">
+                                      <div class="row uniform">
+                                        <div class="1u 12u$(xsmall)"></div>
+                                        <a href="#TIME" class="4u 12u$(xsmall) smooth-scroll-middle" id="here" onclick="here()">
+                                          <h3 style="text-align: center;">內用</h3>
+                                          <p>（一般學生、長時間占用）</p>
+                                        </a>
+                                        <div class="2u 12u$2u$(xsmall)"></div>
+                                        <a href="#TIME" class="4u 12u$(xsmall) smooth-scroll-middle" id="takeout" onclick="takeout()">
+                                          <h3 style="text-align: center;">外帶</h3>
+                                          <p>（計畫助理、活動展示用）</p>
+                                        </a>
+                                        <div class="1u 12u$2u$(xsmall)"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div id="TIME">
+                                  <div class="row uniform" style="width:100%;">
+                                    <div class="12u$">
+                                      <h2>選擇借用時間</h2>
+                                    </div>
+                                    <div class="6u 12u$(xsmall)">
+                                      <div class="row uniform">
+                                        <div class="12u$">
+                                          <h3>起始時間</h3>
+                                        </div>
+                                        <div class="6u 12u$(xsmall)">
+                                          <label>日期</label>
+                                          <input type="date" id="start_date" onchange="analizeDate()">
+                                        </div>
+                                        <div class="6u 12u$(xsmall)">
+                                          <label>時間</label>
+                                          <input type="time" id="start_time" onchange="analizeDate()" list="timelist">
+																					<datalist id="timelist">
+																						<option value="00:00">
+																						<option value="00:30">
+																						<option value="01:00">
+																						<option value="01:30">
+																						<option value="02:00">
+																						<option value="02:30">
+																						<option value="03:00">
+																						<option value="03:30">
+																						<option value="04:00">
+																						<option value="04:30">
+																						<option value="05:00">
+																						<option value="05:30">
+																						<option value="06:00">
+																						<option value="00:30">
+																						<option value="07:00">
+																						<option value="07:30">
+																						<option value="08:00">
+																						<option value="08:30">
+																						<option value="09:00">
+																						<option value="09:30">
+																						<option value="10:00">
+																						<option value="10:30">
+																						<option value="11:00">
+																						<option value="11:30">
+																						<option value="12:00">
+																						<option value="12:30">
+																						<option value="13:00">
+																						<option value="13:30">
+																						<option value="14:00">
+																						<option value="14:30">
+																						<option value="15:00">
+																						<option value="15:30">
+																						<option value="16:00">
+																						<option value="10:30">
+																						<option value="17:00">
+																						<option value="17:30">
+																						<option value="18:00">
+																						<option value="18:30">
+																						<option value="19:00">
+																						<option value="19:30">
+																						<option value="20:00">
+																						<option value="20:30">
+																						<option value="21:00">
+																						<option value="21:30">
+																						<option value="22:00">
+																						<option value="22:30">
+																						<option value="23:00">
+																						<option value="23:30">
+																					</datalist>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="6u 12u$(xsmall)">
+                                      <div class="row uniform">
+                                        <div class="12u$">
+                                          <h3>結束時間</h3>
+                                        </div>
+                                        <div class="5u 12u$(xsmall)">
+                                          <label>日期</label>
+                                          <input type="date" id="end_date"  onchange="analizeDate()">
+                                        </div>
+                                        <div class="5u 12u$(xsmall)">
+                                          <label>時間</label>
+                                          <input type="time" id="end_time" onchange="analizeDate()" list="timelist">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="12u$ _container" id="time_info">
+
+                                    </div>
+                                  </div>
+                              </div>
+                              <div id="OS">
+                                <div class="row uniform" style="width:100%;">
+                                  <div class="12u">
+                                    <h2>請選擇作業系統</h2>
+                                  </div>
+                                  <div class="12u">
+                                    <div class="row uniform" style="text-align: center;">
+                                      <div class="4u 12u$(xsmall) selection" id="windows7" onclick="recordOS(this)">
+                                        <img src="images/win7.png" alt="windows 7"/>
+                                        <h3>Windows 7</h3>
+                                      </div>
+                                      <div class="4u 12u$(xsmall) selection" id="windows10" onclick="recordOS(this)">
+                                        <img src="images/win10.png" alt="windows 10"/>
+                                        <h3>Windows 10</h3>
+                                      </div>
+																			<div class="4u 12u$(xsmall) selection" id="ubuntu16.04" onclick="recordOS(this)">
+                                        <img src="images/ubuntu.png" alt="ubuntu 16.04"/>
+                                        <h3>Ubuntu 16.04</h3>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="SOFTWARE">
+                                <div class="row uniform" style="width:100%;">
+                                  <div class="12u$">
+                                    <h2>軟體需求</h2>
+                                    <p style="margin-top: .5em;">如果有安裝軟體的需求，請在這填寫，如果沒有需求請直接跳過。</p>
+                                  </div>
+                                  <div class="12u$" style="padding: 0px auto;">
+                                    <div class="row uniform">
+                                      <div class="12u$">
+                                        <h4 style="">已提交（點擊即可編輯）：</h4>
+                                      </div>
+                                      <div class="12u$" style="padding: 0px;">
+                                        <ul id="softwareList">
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="12u$" id="softwareInput">
+                                    <form id="Software" >
+                                      <div class="row uniform">
+                                        <div class="8u">
+                                          <input type="text" name="Name" placeholder="軟體名稱">
+                                        </div>
+																				<div class="4u">
+																					<input type="button" value="刪除" onclick="removeSOFTWARE()">
+																				</div>
+                                        <div class="12u$">
+                                          <input type="text" name="Source" placeholder="合法軟體來源">
+                                        </div>
+                                        <div class="12u$">
+                                          <input type="text" name="Notice" placeholder="備註">
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <div class="12u$">
+                                    <div class="button" onclick="recordSOFTWARE()">提交</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="INFO">
+                                <div class="row uniform" style="width:100%;">
+                                  <div class="12u$">
+                                    <h2>填寫基本資料</h2>
+                                  </div>
+                                  <div class="12u$" style="margin-top: 2em;">
+                                    <form id="info">
+                                      <div class="row uniform">
+                                        <div class="4u 12u$(xsmall)">
+                                          <input type="text" name="professor" placeholder="指導教授">
+                                        </div>
+                                        <div class="8u 12u$(xsmall)">
+                                          <input type="text" name="purpose" placeholder="申請目的">
+                                        </div>
+																				<div class="12u$">
+																					<input type="checkbox" id="newuser" name="newuser" value="true">
+																					<label for="newuser">我需要在主機上新增專屬使用者帳戶</label>
+																				</div>
+                                        <div class="6u 12u$(xsmall)">
+                                          <input type="text" name="name" placeholder="申請人姓名">
+                                        </div>
+                                        <div class="6u 12u$(xsmall)">
+                                          <input type="text" name="phone" placeholder="申請人電話">
+                                        </div>
+                                        <div class="12u$">
+                                          <input type="email" name="email" placeholder="申請人電子郵件信箱">
+                                        </div>
+                                        <div class="12u$">
+                                          <input type="text" name="notice" placeholder="備註">
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <div class="12u$" style="text-align: center;">
+                                      <a class="special button ok" style="margin-top: 4em;" onclick="recordINFO()">提交申請</a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="THANKYOU">
+                                <div class="row uniform" style="width: 100%;">
+                                    <div class="12u$">
+                                      <h2>感謝您的借用</h2>
+                                    </div>
+                                    <div class="12u$">
+                                      <div class="row uniform _container" style="margin-top: 3em;">
+                                        <img class="6u$" src="images/mail.svg"/>
+                                        <div class="6u$">
+                                          <h3>我們已接受了您的申請，<br>三天內會將審核結果寄至您的信箱，<br>請隨時注意您的郵件。</h3>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+
+                            </section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li>
+                                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                                <li>icons made by <a href="https://www.flaticon.com/authors/kirill-kazachek" title="Kirill Kazachek">Kirill Kazachek</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+
+			<!--[if lte IE 8]><script src="js/ie/respond.min.js"></script><![endif]-->
+			<script src="js/main.js"></script>
+	</body>
+</html>

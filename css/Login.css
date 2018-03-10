@@ -1,0 +1,75 @@
+html{
+  overflow: hidden;
+  background-image: url("../../images/Login_bg.jpg") ;
+  background-position: center;
+  background-size: cover;
+}
+.canvas{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.title{
+  font-size: 5rem;
+  color: white;
+}
+.inputbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+.submit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#account,#password{
+  font-size: 1.3rem;
+  width: 15.5rem;
+  height: 2.3rem;
+  border-radius: .5rem;
+  margin: 1rem;
+  background-color: rgba(0,0,0,.5);
+  color: white;
+}
+#submit{
+  width: 9rem;
+  height: 3rem;
+  border-radius: .3rem;
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  border: solid 2px white;
+  cursor: pointer;
+}
+#submit:hover,#account:hover,#password:hover{
+  background-color: rgba(0, 0, 0, 0.7);
+}
+@media screen and (max-width: 760px) {
+  .inputbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #submit{
+    width: 9rem;
+    height: 3rem;
+    border-radius: .3rem;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: solid 2px white;
+    cursor: pointer;
+  }
+  #submit:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
