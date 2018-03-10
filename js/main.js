@@ -3,7 +3,7 @@ function pwd_handler(form)
         if (form.password.value != '')
             form.password.value = md5(form.password.value);
 }
-$("document").ready(function(){
+/*$("document").ready(function(){
 	$.get("./homepage.php",function(data,status){
 		$("#staffonly").html(data);
 	});
@@ -25,7 +25,7 @@ $("doucuemt").ready(function(){
 			$("#monitor").html("V.Lab<br>現在溫度："+m["temp"]+"<br>現在濕度："+m["humidity"]+"%<br><small>更新時間"+timestamp+"<small>");
 		});
 	},60000);
-});
+});*/
 $("docuemnt").ready(function(){
 $.get("./auth.php?status",function(data,status){
 	$("#status").html(data);
