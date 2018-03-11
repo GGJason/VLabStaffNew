@@ -1,7 +1,7 @@
 <?php
 
 	require_once("config.php");
-	header("Content-Type:application/json")
+	header("Content-Type:application/json");
 
 /*-----------Non-Auth Function-----------*/
 	if(isset($_GET["list"])){
