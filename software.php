@@ -1,7 +1,7 @@
 <?php
 
 	require_once("config.php");
-	header("Content-Type:application/json");
+	header("Content-Type:application/json")
 
 /*-----------Non-Auth Function-----------*/
 	if(isset($_GET["list"])){
@@ -107,7 +107,6 @@
 		}
 	}
 	else if(isset($_GET["update"])&&isset($_GET["software"])&&isset($_GET["computer"])){
-		$data = file_get_contents('php://input');
 		//require_once("auth.php");
 		$response=array();
 			$obj = (object)$_POST;
@@ -124,18 +123,18 @@
 					$ele->computer=$computers;
 				}
 				foreach((array)$ele->computer as $coms){
-					foreach((array)$ele->software as $sofs){
+					//foreach((array)$ele->software as $sofs){
 						
-						$update="INSERT INTO software_computer(computer,software,description) VALUES('".$coms."','".$sofs."','".$ele->description."')ON DUPLICATE KEY UPDATE computer = '".$coms."',software = '".$sofs."',description = '".$ele->description."',status = '".$ele->status."'";
+						$update="INSERT INTO software_computer(computer,software) VALUES('".$coms."','".$obj->id."') ON DUPLICATE KEY UPDATE computer = '".$coms."',software = '".$obj->id."',status = '".$ele->status."'";
 						$query = mysqli_query($conn,$update);
 						$rec=array();
 						$rec["computer"]=$coms;
-						$rec["software"]=$sofs;
+						$rec["software"]=$obj->id;
 						$rec["status"]="ok";
 						if(!$query)$rec["status"]="fail";
 						array_push($response,$rec);
 						
-					}
+					//}
 				}
 			}
 			$obj = array();
@@ -151,8 +150,46 @@
 		}*/
 		
 	
+	}else if (isset($_GET["update"])&&isset($_GET["software"])){
+		$data = (object)$_POST;
+		if (isset($data->name)){
+			$stmt = $conn -> prepare("INSERT INTO software VALUES(?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE name = ?, company = ?,licenseDue = ?, usageDue = ?, user = ?, os = ?, image = ?, description = ?");
+			if (isset($data->id))
+				$id = $data->id;
+			else
+				$id = "DEFAULT";
+			$name = $data->name;
+			$company = $data->company;
+			$license = $data->licenseDue;
+			$usage = $data->usageDue;
+			$user = $data->userid;
+			$os = json_encode($data->os);
+			$des = $data->description;
+			$stmt -> bind_param("sssssssssssssssss",$id,$name,$company,$license,$usage,$user,$os,$image,$des,$name,$company,$license,$usage,$user,$os,$image,$des);
+			$stmt -> execute();
+			$stmt -> store_result();
+		
+			$obj = array();
+			if ($stmt->affected_rows != -1){
+				$obj["status"] = "ok";
+				$obj["message"] = "success update ".$name;
+			}else if($stmt->affected_rows == 0){
+				$obj["status"] = "ok";
+				$obj["message"] = $name." is the same";		
+			}else{
+				$obj["status"] = "fail";
+				$obj["message"] = "something wrong";
+			}
+			echo json_encode($obj,JSON_UNESCAPED_UNICODE);
+		}else{
+		
+			$obj = array();
+			$obj["status"] = "fail";
+			$obj["message"] = "please specified data";
+			echo json_encode($obj,JSON_UNESCAPED_UNICODE);
+		}
 	}
-	else if(isset($_GET["update"])&&isset($_GET["software"])){
+	/*else if(isset($_GET["update"])&&isset($_GET["software"])){
 		$return = array();
 		$values = array();
 		$return["status"]="fail";
@@ -251,6 +288,10 @@
 			$return["softstatus"]="Database Error";
 		}
 		echo json_encode($return,JSON_UNESCAPED_UNICODE);
+	}*/
+	else{
+		header("HTTP/1.0 404 Not Found");
+		return;
 	}
 	/*-------------Auth Function-------------*/
 	//require("auth.php");
