@@ -51,7 +51,7 @@
 			FROM software AS s 
 			LEFT OUTER JOIN user AS u ON s.user=u.id 
 			LEFT OUTER JOIN software_computer AS sc ON s.id = sc.software 
-			RIGHT OUTER JOIN computer AS c ON sc.computer = c.id
+			LEFT OUTER JOIN computer AS c ON sc.computer = c.id
 			WHERE s.name LIKE '%".$_GET["name"]."%'";
 		else
 			$select="SELECT s.name,s.company,s.licenseDue,s.usageDue,s.os,
@@ -59,7 +59,7 @@
 			sc.computer,sc.status 
 			FROM software AS s 
 			LEFT OUTER JOIN software_computer AS sc ON s.id = sc.software 
-			RIGHT OUTER JOIN computer AS c ON sc.computer = c.id
+			LEFT OUTER JOIN computer AS c ON sc.computer = c.id
 			WHERE s.name LIKE '%".$_GET["name"]."%'";
 			
 		$query=mysqli_query($conn,$select) or die("Database Not Work!");

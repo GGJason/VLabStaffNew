@@ -117,3 +117,13 @@
 #top:hover{
 	color: #61a4ba;
 }
+
+.status_0{
+	color: lightgray;
+}
+.status_1{
+	color: lightseagreen;
+}
+.status_2{
+	color: #f9b9bc;
+}

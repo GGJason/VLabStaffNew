@@ -287,7 +287,7 @@ $("document").ready(function(){
 		$("#staffonly").html(data);
 	});
 });
-$("doucuemt").ready(function(){
+/*$("doucuemt").ready(function(){
 	$.get("./monitor.php?ask",function(data,status){
 		m = jQuery.parseJSON(data);
 		// Split timestamp into [ Y, M, D, h, m, s ]
@@ -304,7 +304,7 @@ $("doucuemt").ready(function(){
 			$("#monitor").html("V.Lab<br>現在溫度："+m["temp"]+"<br>現在濕度："+m["humidity"]+"%<br><small>更新時間"+timestamp+"<small>");
 		});
 	},60000);
-});
+});*/
 $("docuemnt").ready(function(){
 $.get("./auth.php?status",function(data,status){
 	$("#status").html(data);

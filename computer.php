@@ -7,7 +7,7 @@
 	//列出所有電腦 computer.php?list
 	if(isset($_GET["list"])){
 		if(isset($_GET["computer"])){
-			$select="SELECT c.*,sc.*,s.name AS 'software' FROM computer AS c LEFT OUTER JOIN software_computer AS sc ON sc.computer=c.id LEFT OUTER JOIN software AS s ON sc.software=s.id WHERE c.id='".$_GET["computer"]."'";
+			$select="SELECT c.*,sc.*,s.id AS 'software_id',s.name AS 'software' FROM computer AS c LEFT OUTER JOIN software_computer AS sc ON sc.computer=c.id LEFT OUTER JOIN software AS s ON sc.software=s.id WHERE c.id='".$_GET["computer"]."'";
 			$query = mysqli_query($conn,$select);
 			$arr = array();
 			$obj = array();
@@ -23,6 +23,7 @@
 					$obj["description"]=$result["description"];
 				}
 				$software = array();
+				$software["id"] = $result["software_id"];
 				$software["name"] = $result["software"];
 				$software["status"] = $result["status"];
 				array_push($arr,$software);

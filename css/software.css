@@ -74,7 +74,7 @@ input[type="text"]{
 
 
 .layoutImac-class{
-	width: 19%;
+	width: 18%;
 	display: inline-block;
 	color: lightgray;
 	border: 0.1em rgba(255,255,255,0);
@@ -92,9 +92,7 @@ input[type="text"]{
 		margin-right: 5px;
 	}
 
-.layoutImac_stat_-1{
-	color: gray;
-}
+
 .layoutImac_stat_0{
 	color: lightgray;
 }
@@ -102,7 +100,7 @@ input[type="text"]{
 	color: lightseagreen;
 }
 .layoutImac_stat_2{
-	color: thistle;
+	color: #f9b9bc;
 }
 
 /*
