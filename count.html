@@ -209,8 +209,7 @@ rect:first-child {
 				$.ajax({
 					url: "./count.php?check",
 					type:"GET",
-					success:function(response){
-						var data = $.parseJSON(response);
+					success:function(data){
 						$(".today").val(data["date"]);
 					},
 					error:function(xhr){

@@ -1,6 +1,7 @@
 <?php
 	require_once("config.php");
 	require_once("function.php");
+	header("Content-Type: application/json");
 	/*** 更新人數資料 ***/
 	if (isset($_POST["count"])&&isset($_POST["date"])){
 		if($_SESSION["auth"]=="") throw ("403");

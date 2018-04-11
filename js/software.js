@@ -396,8 +396,9 @@ function postEditImac(){
 		})
 		.done(function(){
 			//更新顯示
+			console.log("done")
 			imac_isEditing = false
-			cancleEditImac(postJSON.name)
+			cancleEditImac($('#soft_name').text())
 		})
 		.fail(function(){
 			alert('沒有送出QQ')
@@ -448,7 +449,6 @@ function cancleEditImac(softwareName){
 				$('#layoutRN_'+p).addClass('layoutImac_stat_'+computers[i].status)
 				$('#layoutRN_'+p).addClass('layoutImac_editable')
 			}
-
 		}
 	})
 }

@@ -35,14 +35,14 @@
 		}
 	}
 	else if(isset($_GET["out"])){
+		$data = (object)$_POST;
 		$type = 1;
-		if(isset($_POST["type"])){
-			$type=$_POST["type"];
+		if(isset($data->type)){
+			$type=$data->type;
 			if($type < 1) $type = 1;
 		}
-		$data = file_get_contents('php://input');
-		if (isset( $data["workitem"])){
-			$description = $data["workitem"];
+		if (isset( $data->workitem)){
+			$description = json_encode($data->workitem,JSON_UNESCAPED_UNICODE);
 		}
 		if(isset($_SESSION["punch"])&&($_SESSION["punch"]=="")&&!check($conn)){
 			echo ("<script>alert('你已經下班摟');window.location='index.html';</script>");
@@ -110,43 +110,42 @@
 		//echo json_encode($return,JSON_UNESCAPED_UNICODE);
 	}
 	else if(isset($_GET["update"])){
+		$data = (object)$_POST;
 		if(isset($_GET["workitem"])){
-			$data = json_encode(file_get_contents('php://input'),JSON_UNESCAPED_UNICODE);
 			$select = "SELECT punchid FROM staff WHERE username = '" . $_SESSION["username"] . "'";
 			if(isset($_GET["dir"]))
 				header("Location: ".$_GET["dir"]);
-				
 		}
-		else if(isset($_POST["id"])){
+		else if(isset($data->id)){
 			$count = 0;
 			$update = "UPDATE punch SET ";
-			if(isset($_POST["start"])){
+			if(isset($data->start)){
 				$count++;
-				$update = $update."punchin='".$_POST["start"]."'";
+				$update = $update."punchin='".$data->start."'";
 			}
 			
-			if(isset($_POST["end"])){
+			if(isset($data->end)){
 				$count++;
 				if($count > 1) $update = $update.",";
-				$update = $update."punchout='".$_POST["end"]."'";
-				if($_POST["id"]==$_SESSION["punch"]){
+				$update = $update."punchout='".$data->end."'";
+				if($data->id==$_SESSION["punch"]){
 					$_SESSION["punch"] = 0;
 					$clean = "UPDATE staff SET punchid = 0 WHERE username = '".$_SESSION["username"]."'";
 					$query = mysqli_query($conn,$clean);
 				}
 					
 			}
-			if(isset($_POST["content"])){
+			if(isset($data->content)){
 				$count++;
 				if($count > 1) $update = $update.",";
-				$update = $update."description='".$_POST["content"]."'";
+				$update = $update."description='".$data->content."'";
 			}
-			if(isset($_POST["type"])){
+			if(isset($data->type)){
 				$count++;
 				if($count > 1) $update = $update.",";
-				$update = $update."type='".$_POST["type"]."'";
+				$update = $update."type='".$data->type."'";
 			}
-			$update = $update." WHERE id = '".$_POST["id"]."'";
+			$update = $update." WHERE id = '".$data->id."'";
 			$query = mysqli_query($conn,$update);
 			if($query)
 				echo "{status:\"ok\"}";

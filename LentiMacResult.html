@@ -86,21 +86,32 @@
 											 			table.append("<td class='"+index+"'>"+d[index]+"</td>");
 											 		}
 											 		else{
-											 			var status = "未登記";
 											 			switch (d["status"]){
-											 			case 0:
-											 			case undefined:
-											 				status = "未登記";	
-											 				break;
-											 			case -1:
-											 				status = "不核准";	
-											 				break;
-											 			default:
-											 				status = d["status"];
-											 				break;
+												 			case 0:
+												 			case undefined:
+												 			
+												 				start = new Date(d["start"]);	
+												 				if(isNaN(start.getTime())){
+												 					start = "";
+												 				}else{
+												 					start = start.toISOString().substr(0,16);
+												 				}
+												 				end = new Date(d["end"]);	
+												 				if(isNaN(end.getTime())){
+												 					end = "";
+												 				}else{
+												 					end = end.toISOString().substr(0,16);
+												 				}
+												 				table.append("<td class='"+index+"'><a href='computerCalendarPrivate.html?start="+start+"&end="+end+"&user="+d["name"]+"&computer="+d["computer"]+"&id="+d["id"]+"&email="+d["email"]+"'>未登記</a></td>");
+												 				break;
+												 			case -1:
+												 				table.append("<td class='"+index+"'>不核准</td>");
+												 				break;
+												 			default:
+												 				status = d["status"];
+												 				table.append("<td class='"+index+"'><a href='computerCalendarPrivate.html#"+status+"'>已登記</a></td>");
+												 				break;
 											 			}
-											 			
-											 		table.append("<td class='"+index+"'>"+status+"</td>");
 											 		}
 											 	}
 											 	$("#record").append(table);

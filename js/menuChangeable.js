@@ -7,13 +7,14 @@ function showMenu(){
 		"<h2>Menu</h2>" +
 		"<div id='user'></div>" +
 	  	"<ul> " +
-			" <li><a href='./index.html'>首頁</a></li> " +
+			" <li><a href='./index.php'>首頁</a></li> " +
 			" <li><b>工作區域</b><li> " +
 			" <li><a href='./punch.html'>打卡</a></li> " +
 			" <li><a href='./Dashboard.html'>儀表板</a></li> " +
 			" <li><a href='./count.html'>人數統計工具</a></li> " +
 			" <li><a href='./note.html'>交辦事項</a></li> " +
 			" <li><a href='./computerCalendarPrivate.html'>電腦借用登記</a></li> " +
+			" <li><a href='./LentiMacResult.html'>電腦借用申請</a></li> " +
 			" <li><a href='./UpdateInfo.html'>個人資料更新</a></li> " +
 			" <li><a href='./SelfService.html'>工讀生自助區</a><li> " +
 			" <li><b>公開區域</b><li> " +
@@ -26,9 +27,9 @@ function showMenu(){
 	var menu_NoAuth = 
 		"<h2>Menu</h2>" +
 		"<ul> " +
-			" <li><a href='./index.html'>首頁</a></li> " +
+			" <li><a href='./index.php'>首頁</a></li> " +
 			" <li><a href='./software.html'>軟體查詢</a><li> " +
-			" <li><a href='./computercalendar.html'>電腦借用查詢</a><li> " +
+			" <li><a href='./computerCalendar.html'>電腦借用查詢</a><li> " +
 			" <li><a href='./imacInfo.html'>iMac軟硬體資訊</a><li> " +
 			" <li><a href='./countshow.html'>人數統計</a><li> " +
 		"</ul> ";

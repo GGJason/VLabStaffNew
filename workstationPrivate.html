@@ -31,6 +31,7 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<script src="js/jquery.min.js"></script>
+		<script src="js/clipboard.min.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -50,9 +51,23 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>電腦借用記錄</h1>
-							<p>如需借用請至「<a href="./Lentimac.html">iMac借用</a>」</p>
+							<h1>電腦借用登記</h1>
 							<div id="computercalendar">
+								<form id="newevent" method="POST">
+									<label>開始時間</label>
+									<input type="datetime-local" name="start" id="start"></input><br/>
+									<label>結束時間</label>
+									<input type="datetime-local" name="end" id="end"></input><br/>
+									<label>使用者名稱</label>
+									<input type="text" name="user" id="user" placeholder="請輸入使用者名稱"></input><br/>
+									<label>電腦</label>
+									<input type="text" name="computer" id="computer" placeholder="請輸入借用電腦編號 ex: 1701"></input><br/>
+									<label>電子信箱</label>
+									<input type="text" name="email" id="email" placeholder="請輸入申請人email"></input><br/>
+									<input type="text" name="id" id="id" style="display:none;"></input><br/>
+									<input type="text" name="application" id="application" style="display:none;"></input><br/>
+									<input type="submit"></input>
+								</form>
 								<table id = "calendar">
 									<tr>
 										<th class="hide">編號</th>
@@ -61,6 +76,9 @@
 										<th>結束</th>
 										<th class="hide">使用者</th>
 										<th>電腦</th>
+										<th class="hide">電子信箱</th>
+										<!--<th class="hide">授權碼</th>-->
+										<th class="hide">電子借用牌連結</th>
 										<th class="hide">修改</th>
 									</tr>
 								</table>
@@ -81,30 +99,51 @@
 								</table>-->
 							</div>
 							<script>
+								new ClipboardJS('.btn');
+								var id = location.hash.substr(1,10);
+								console.log(id);
+								if( id >= 0 ){
+									$.ajax({
+										url:"workstation.php?calendar&id="+id,
+										type:"get",
+										dataType:"json",
+										success: function(data){
+											console.log(data.event)
+											$.each(data.event,
+											function(i,v){
+												v = v.replace(" ","T");
+												$("#"+i).val(v);
+											});
+										}
+									});
+								}
 								$.ajax({
-									url:"computer.php?calendar",
+									url:"workstation.php?calendar",
 									type:"get",
 									dataType:"json",
 									success: function(data){
 										$.each(data.events,function(i,v){
 											$("#calendar").append("<tr>");
 											$.each(v,function(key,value){
-												$("#calendar tr:last").append("<td>"+value+"</td>");
-											});	
-											if (Object.keys(data.events[0]).length == 3){
-												$(".hide").css("display","none");
-											}
-											else{
-											$("#calendar tr:last").append("<td><button onclick=\"location='./computercalendar.html#"+v.id+"';location.reload();\">修改</button></td>");
-											}
+											if (key != "auth"){
+													$("#calendar tr:last").append("<td>"+value+"</td>");
+												}
+											});
+											
+											//$("#calendar tr:last").append("<td><input type='text' id='txt_"+v.id+"' style='display:none' value='https://vlabstaff.caece.net/LentiMacUserShow.html?id="+v.id+"&auth="+v.auth+"'><button class='btn' data-clipboard-target='#txt_"+v.id+"'>複製</button></td>");
+											$("#calendar tr:last").append("<td><a href='https://vlabstaff.caece.net/LentiMacUserShow.html?id="+v.id+"&auth="+v.auth+"'><button class='btn' data-clipboard-target='#txt_"+v.id+"'>連結</button></a></td>");
+											$("#calendar tr:last").append("<td><button onclick=\"window.location.hash='#"+v.id+"';window.location.reload();\">修改</button></td>");
+											
 											$("#calendar").append("</tr>");
 										});
 									}
-								});
+								});													
 		
 								$("#newevent").submit(function(){
+								console.log($("#newevent"))
+									console.log($("#newevent").serialize())
 									$.ajax({
-										url:"computer.php?calendar&update",
+										url:"workstation.php?calendar&update",
 										type:"post",
 										dataType:"json",
 										data:$("#newevent").serialize(),
@@ -115,10 +154,22 @@
 											else
 												alert(data["message"]);
 											console.log(data);
+										},
+										error: function(res,err){
+											console.log(res);
+											console.log(err);
 										}
 									});
 									return false;
 								});
+								if (window.location.hash == ""){
+									query = window.location.search.substr(1).split('&');
+									for (var i in query){
+										var pair = query[i].split('=');
+										$("[name='"+pair[0]+"']").val(decodeURIComponent(pair[1]));
+									}
+									console.log(query);
+								}
 								function schedule(){
 									var d = new Date().getFullYear()+"-"+new Date().getMonth();
 									var start = new Date(d);

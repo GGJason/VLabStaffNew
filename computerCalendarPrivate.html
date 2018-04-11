@@ -53,6 +53,7 @@
 							<h1>電腦借用登記</h1>
 							<div id="computercalendar">
 								<form id="newevent" method="POST">
+									<input type="text" name="id" id="id" style = "display:none"></input><br/>
 									<label>開始時間</label>
 									<input type="datetime-local" name="start" id="start"></input><br/>
 									<label>結束時間</label>
@@ -61,6 +62,8 @@
 									<input type="text" name="user" id="user" placeholder="請輸入使用者名稱"></input><br/>
 									<label>電腦</label>
 									<input type="text" name="computer" id="computer" placeholder="請輸入借用電腦編號 ex: 1701"></input><br/>
+									<label>電子信箱</label>
+									<input type="text" name="email" id="email" placeholder="請輸入申請人email"></input><br/>
 									<input type="text" name="id" id="id" style="display:none;"></input><br/>
 									<input type="text" name="application" id="application" style="display:none;"></input><br/>
 									<input type="submit"></input>
@@ -73,6 +76,9 @@
 										<th>結束</th>
 										<th class="hide">使用者</th>
 										<th>電腦</th>
+										<th class="hide">電子信箱</th>
+										<!--<th class="hide">授權碼</th>-->
+										<th class="hide">電子借用牌連結</th>
 										<th class="hide">修改</th>
 									</tr>
 								</table>
@@ -118,20 +124,22 @@
 										$.each(data.events,function(i,v){
 											$("#calendar").append("<tr>");
 											$.each(v,function(key,value){
-												$("#calendar tr:last").append("<td>"+value+"</td>");
-											});	
-											if (Object.keys(data.events[0]).length == 3){
-												$(".hide").css("display","none");
-											}
-											else{
+											if (key != "auth"){
+													$("#calendar tr:last").append("<td>"+value+"</td>");
+												}
+											});
+											
+											//$("#calendar tr:last").append("<td><input type='text' id='txt_"+v.id+"' style='display:none' value='https://vlabstaff.caece.net/LentiMacUserShow.html?id="+v.id+"&auth="+v.auth+"'><button class='btn' data-clipboard-target='#txt_"+v.id+"'>複製</button></td>");
+											$("#calendar tr:last").append("<td><a href='https://vlabstaff.caece.net/LentiMacUserShow.html?id="+v.id+"&auth="+v.auth+"'><button class='btn' data-clipboard-target='#txt_"+v.id+"'>連結</button></a></td>");
 											$("#calendar tr:last").append("<td><button onclick=\"window.location.hash='#"+v.id+"';window.location.reload();\">修改</button></td>");
-											}
+											
 											$("#calendar").append("</tr>");
 										});
 									}
-								});
+								});													
 		
 								$("#newevent").submit(function(){
+								console.log($("#newevent"))
 									$.ajax({
 										url:"computer.php?calendar&update",
 										type:"post",
@@ -144,6 +152,10 @@
 											else
 												alert(data["message"]);
 											console.log(data);
+										},
+										error: function(res,err){
+											console.log(res);
+											console.log(err);
 										}
 									});
 									return false;

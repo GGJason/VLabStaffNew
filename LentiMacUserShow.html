@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>首頁 | V.Lab Staff</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+		<meta lang="zh-Hant">
+		<meta name="description" content="臺大土木系V.Lab工讀生的工作專區">
+		<!-- Scripts -->
+		<!--jQurey-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/util.js"></script>
+		<!--[if lte IE 8]><script src="asse/js/ie/respond.min.js"></script><![endif]-->
+		<script src="js/md5.js"></script>
+		<script src="js/main.js"></script>
+
+
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+					<header id="header">
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+					<script type="text/javascript" src="js/menuChangeable.js"></script>
+					</nav>
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>電腦借條電子版</h1>
+							<div>
+								<div style="display:inline-block" >借用者：</div>
+								<div style="display:inline-block" id="user"></div>
+							</div>
+							<div>
+								<div style="display:inline-block" >借用編號：</div>
+								<div style="display:inline-block"  id="computer"></div>
+							</div>
+							<div>
+								<div style="display:inline-block" >開始時間：</div>
+								<div style="display:inline-block"  id="start"></div>
+							</div>
+							<div>
+								<div style="display:inline-block" >結束時間：</div>
+								<div style="display:inline-block"  id="end"></div>
+							</div>
+						</div>
+						<script>
+							$.get("./form.php"+window.location.search+"&public&type=imac",function(data){
+								if(data.status != "fail"){
+									$("#user").html(data.user);
+									$("#computer").html(data.computer);
+									$("#start").html(data.start);
+									$("#end").html(data.end);
+								}
+							}).fail(function(){
+								console.log("Fail");
+							})
+						</script>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+					
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://vlab.caece.net" class="icon style2 fa-globe"><span class="label">Web Page</span></a></li>
+									<li><a href="https://www.facebook.com/vlab.ntu/" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; V.Lab 工程視覺化實驗室</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+
+	</body>
+</html>

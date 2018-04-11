@@ -7,14 +7,16 @@ if (extension_loaded('mysqlnd')) {
 } */
 	require("config.php");
 //	ini_set('display_errors', 1); 
+	Header("Content-Type:application/json");
 	if (isset($_GET["imac"])){
 		if(isset($_GET["list"])){
-			Header("Content-Type:application/json");
 			$start = "2010/1/1T00:00:00Z";
 			$end = "2019/1/1T00:00:00Z";
 			if(isset($_GET["start"])){
+				$start = $_GET["start"];
 			}
 			if(isset($_GET["end"])){
+				$end = $_GET["end"];
 			}
 			
 			$select = "SELECT * FROM imacrent WHERE timestamp BETWEEN ? AND ?";
@@ -42,7 +44,11 @@ if (extension_loaded('mysqlnd')) {
 			$message="親愛的 ".$data->name." 您好：\n我們已經收到您的iMac借用申請，我們將會盡快處理，若有任何問題請來信vlab@caece.net詢問，謝謝！\n\nV.Lab bot 上";
 			$header="FROM: V.Lab管理員<vlab@caece.net>\nBCC:gracecatrabbit@gmail.com,csps50404@gmail.com,ggjason.tw@gmail.com";
 
-			//mail($data->email,"[V.Lab]iMac借用收件通知",$message,$header);
+			mail($data->email,"[V.Lab]iMac借用收件通知",$message,$header);
+			$message="各位V.Lab管理員您們好： \n 有新的電腦借用申請：\n借用人：".$data->name."\n借用人email：".$data->email."\n借用目的：".$data->purpose."\n指導老師：".$data->professor."\n開始時間：".$start."\n結束時間：".$end."\n\n若同意請至以下連結進行登記 https://vlabstaff.caece.net/LentiMacResult.html\nV.Lab bot 上";
+			$header="FROM: V.Lab管理員<vlab@caece.net>";
+
+			mail("vlabstaff@caece.net","[V.Lab]iMac借用收件通知",$message,$header);
 			
 			
 		}
@@ -123,6 +129,35 @@ if (extension_loaded('mysqlnd')) {
 
 			//mail($data->email,"[V.Lab]iMac借用收件通知",$message,$header);
 			
+			
+		}
+	}
+	else if(isset($_GET["public"])){
+		
+		$data = (object)$_GET;
+		if (isset($data->id)&&isset($data->auth)&&isset($data->type)&&$data->type=="imac"){
+			$stmt = $conn->prepare("SELECT * FROM computer_calendar WHERE id = ? AND auth = ?");
+			$stmt->bind_param("ss",$data->id,$data->auth);
+			$stmt->execute();
+			$res = new stdClass();
+			$stmt->bind_result($res->id,$res->timestamp,$res->start,$res->end,$res->user,$res->computer,$res->email,$res->auth);
+			unset($res->auth);
+			if($stmt->fetch()){
+				if(strtotime($res->end)>strtotime("now")){
+					echo json_encode($res,JSON_UNESCAPED_UNICODE);
+				}else{
+					$resp = new stdClass();
+					$resp->status = "fail";
+					$resp->message = "out of date";
+					echo json_encode($resp,JSON_UNESCAPED_UNICODE);
+				}
+			}
+			else{
+				$resp = new stdClass();
+				$resp->status = "fail";
+				$resp->message = "info error";
+				echo json_encode($resp,JSON_UNESCAPED_UNICODE);
+			}
 			
 		}
 	}
