@@ -8,7 +8,7 @@
 	//列出所有電腦 computer.php?list
 	if(isset($_GET["list"])){
 		if(isset($_GET["computer"])){
-			$select="SELECT c.*,sc.*,s.name AS 'software' FROM computer AS c LEFT OUTER JOIN software_computer AS sc ON sc.computer=c.id LEFT OUTER JOIN software AS s ON sc.software=s.id WHERE c.id='".$_GET["computer"]."'";
+			$select="SELECT c.*,sc.*,s.name AS 'software' ,s.id AS 'software_id' FROM computer AS c LEFT OUTER JOIN software_computer AS sc ON sc.computer=c.id LEFT OUTER JOIN software AS s ON sc.software=s.id WHERE c.id='".$_GET["computer"]."'";
 			$query = mysqli_query($conn,$select);
 			$arr = array();
 			$obj = array();
@@ -25,6 +25,7 @@
 				}
 				$software = array();
 				$software["name"] = $result["software"];
+				$software["id"] = $result["software_id"];
 				$software["status"] = $result["status"];
 				array_push($arr,$software);
 			}
@@ -303,11 +304,11 @@
 		}
 		if (isset($data->softwares)){
 			foreach ($data->softwares as $soft){
+				$soft = (object) $soft;
 				$stmt = $conn -> prepare("INSERT INTO software_computer VALUES(?,?,'','',?) ON DUPLICATE KEY UPDATE status=?");
-				$stmt -> bind_param("ssss",$data->id,$soft->id,$data->status,$data->status);
+				$stmt -> bind_param("ssss",$data->id,$soft->id,$soft->status,$soft->status);
 				$stmt -> execute();
 				$stmt -> store_result();
-				var_dump($stmt);
 				if($stmt->affected_rows == -1){
 					$obj = array();
 					$obj["status"] = "fail";			
@@ -320,6 +321,11 @@
 		$obj["status"] = "ok";			
 		echo  json_encode($obj,JSON_UNESCAPED_UNICODE);
 		exit();
+	}else if(isset($_GET["computer"])&&isset($_GET["software"])){
+	
+		$responseObject = array();
+		$responseObject["status"] = "ok";
+		echo  json_encode($responseObject,JSON_UNESCAPED_UNICODE);
 	}
 	function getAvailability($conn){
 	

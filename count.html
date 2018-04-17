@@ -213,6 +213,7 @@ rect:first-child {
 						$(".today").val(data["date"]);
 					},
 					error:function(xhr){
+						console.log(xhr)
 						alert("Ajax 錯誤");
 					},
 				});
@@ -229,6 +230,7 @@ rect:first-child {
 						$("#count").val(response);
 					},
 					error:function(xhr){
+						console.log(xhr)
 						alert("Ajax 錯誤");
 					},
 				});

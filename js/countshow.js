@@ -54,6 +54,7 @@ var svg = d3.select("svg"),
 	width = +svg.attr("width") - margin.left - margin.right,
 	height = +svg.attr("height") - margin.top - margin.bottom,
 	g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	svg.style("background", "white");
 var innerWidth = width - 40
 var x = d3.scaleLinear()
 	.rangeRound([40, width],.1);
@@ -427,10 +428,10 @@ function exportImg(){
 
 	var svg = d3.select("svg")
 	var svgString = getSVGString(svg.node());
-	svgString2Image( svgString, 2*width, 2*height, 'png', save ); // passes Blob and filesize String to the callback
+	svgString2Image( svgString, 2*width, 2*height, 'image/jpeg', save ); // passes Blob and filesize String to the callback
 
 	function save( dataBlob, filesize ){
-		saveAs( dataBlob, 'D3 vis exported to PNG.png' ); // FileSaver.js function
+		saveAs( dataBlob, 'V.Lab人數統計圖.jpeg' ); // FileSaver.js function
 	}
 }
 
@@ -509,7 +510,7 @@ function getSVGString( svgNode ) {
 
 
 function svgString2Image( svgString, width, height, format, callback ) {
-	var format = format ? format : 'png';
+	var format = format ? format : 'image/png';
 
 	var imgsrc = 'data:image/svg+xml;base64,'+ btoa( unescape( encodeURIComponent( svgString ) ) ); // Convert SVG string to data URL
 
@@ -527,7 +528,7 @@ function svgString2Image( svgString, width, height, format, callback ) {
 		canvas.toBlob( function(blob) {
 			var filesize = Math.round( blob.length/1024 ) + ' KB';
 			if ( callback ) callback( blob, filesize );
-		});
+		},format);
 
 		
 	};

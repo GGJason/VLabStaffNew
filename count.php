@@ -48,7 +48,7 @@
 			if( $query->num_rows != 0)
 				echo mysqli_fetch_array($query)[0];
 			else
-				echo "No Record";
+				echo "{date:'No Record'}";
 		}
 		else{
 			echo "Database Error";

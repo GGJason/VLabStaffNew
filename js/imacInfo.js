@@ -227,11 +227,12 @@ function edit(id){
 		$('#info_softwares').empty()
 		var softwares = imacInfoJSON.softwares
 		for (i in softwares){
+			var id = softwares[i].id
 			var name = softwares[i].name
 			var stat = softwares[i].status
 			var soft_stat_select_html = '<div class="select-wrapper 4u" style="display:inline-block"><select class="soft-select" name="soft_stat_'+name+'"><option value="0">未安裝</option>'
 			+'<option value="1">正常</option><option value="2">異常</option></select></div>'
-			$('#info_softwares').append('<li class="softwares-li status_'+stat+'"><span class="soft_name">' + name +'</span>&nbsp&nbsp&nbsp<span class="soft_stat">'+soft_stat_select_html+'</span>')
+			$('#info_softwares').append('<li class="softwares-li status_'+stat+'"><input style="display:none" class="soft_id" value="'+id+'"/><span class="soft_name">' + name +'</span>&nbsp&nbsp&nbsp<span class="soft_stat">'+soft_stat_select_html+'</span>')
 			$( 'select[name="soft_stat_'+softwares[i].name+'"]').val( softwares[i].status )
 			$('.soft-select').change(function(){
 				var val = $(this).val()
@@ -251,16 +252,17 @@ function cancleEdit(id){
 function postEdit(){
 	var postJSON = {id:"1701",room:"604",position:"15",os:[],hardware:{"mac":""},availability:"",description:"",softwares:[]}
 	postJSON.id = $('#imacNo').text()
-	postJSON.room = $('select[name$="room"]:selected').val()
+	postJSON.room = $('select[name$="room"]').val()
 	postJSON.position = $('input[name$="pos"]').val()
 	$('input[name$="os"]:checked').each(function(){
 		postJSON.os.push( $(this).val() )
 	})
 	postJSON.hardware.mac = $('input[name$="mac"]').val()
-	postJSON.availability = $('select[name$="ava"]:selected').val()
+	postJSON.availability = $('select[name$="ava"]').val()
 	postJSON.description = $('input[name$="description"]').val()
 	$('.softwares-li').each(function(){
 		var softwareJSON = {name:"",status:""}
+		softwareJSON.id = $(this).find('.soft_id').val()
 		softwareJSON.name = $(this).find('.soft_name').text()
 		softwareJSON.status = $(this).find('select').prop('selected',true).val()
 		postJSON.softwares.push(softwareJSON)
@@ -268,9 +270,9 @@ function postEdit(){
 
 	console.log(postJSON);
 	postJSON_string = JSON.stringify(postJSON)
-	if ( confirm('送出修改？\n'+postJSON_string+'\n./computer.php?computer&software') ){
+	if ( confirm('送出修改？\n'+postJSON_string+'\n./computer.php?update') ){
 		console.log(postJSON);
-		$.post('./computer.php?computer&software',postJSON, function(receiveJSON){
+		$.post('./computer.php?update',postJSON, function(receiveJSON){
 			////不知道要post去哪RRRRRRR///////////////////////////////
 			console.log(receiveJSON)
 			var receive = receiveJSON
