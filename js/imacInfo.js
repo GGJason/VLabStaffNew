@@ -174,9 +174,9 @@ function edit(id){
 		// 幫電腦上色
 		colorClass(imacInfoJSON.availability)
 		// 電腦位置
-		var room_select_html = '<div class="select-wrapper 2u" style="display:inline-block"><select name="room"><option value="604">604</option>'
+		var room_select_html = '<div class="select-wrapper 2u" style="display:inline-block"><select name="room" disabled><option value="604">604</option>'
 							+ '<option value="613">613</option><option value="601">601</option></select></div>'
-		var pos_input_html = '<div class="2u" style="display:inline-block"><input type="text" name="pos" placeholder="pos" maxLength=3></div>'
+		var pos_input_html = '<div class="2u" style="display:inline-block"><input type="text" name="pos" placeholder="pos" maxLength=3 disabled></div>'
 		$('#info_room_pos').html('room&nbsp&nbsp' + room_select_html + '\nposition&nbsp&nbsp' + pos_input_html)
 		$( 'select[name="room"]').val( imacInfoJSON.room )
 		$( 'input[name$="pos"]' ).val( imacInfoJSON.position )
@@ -270,7 +270,7 @@ function postEdit(){
 
 	console.log(postJSON);
 	postJSON_string = JSON.stringify(postJSON)
-	if ( confirm('送出修改？\n'+postJSON_string+'\n./computer.php?update') ){
+	if ( confirm('送出修改？') ){
 		console.log(postJSON);
 		$.post('./computer.php?update',postJSON, function(receiveJSON){
 			////不知道要post去哪RRRRRRR///////////////////////////////
@@ -280,6 +280,7 @@ function postEdit(){
 				alert('送出的東西好像有哪裡錯了>A<\n' + JSON.stringify(receiveJSON))
 			}else{
 				alert('已送出！')
+				window.location.reload();
 			}
 		})
 		.done(function(){
